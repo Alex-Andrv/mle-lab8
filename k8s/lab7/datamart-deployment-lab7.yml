@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: datamart
-          image: ddulaev/datamart:latest
+          image: aandreev/datamart:latest
           ports:
             - containerPort: 9001
           env:

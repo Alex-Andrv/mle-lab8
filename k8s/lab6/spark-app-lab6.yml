@@ -7,7 +7,7 @@ metadata:
 spec:
   type: Python
   pythonVersion: "3"
-  image: "ddulaev/lab6:latest"
+  image: "aandreev/lab6:latest"
   imagePullPolicy: Always
   mainApplicationFile: "local:///app/main.py"
   sparkVersion: "3.4.1"
