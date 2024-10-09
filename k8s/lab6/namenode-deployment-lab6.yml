@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: namenode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: namenode
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: namenode
+    spec:
+      containers:
+        - name: namenode
+          image: bde2020/hadoop-namenode:2.0.0-hadoop3.2.1-java8
+          ports:
+            - containerPort: 9870
+            - containerPort: 9000
+          envFrom:
+            - secretRef:
+                # kubectl create secret generic hadoop-secrets --from-env-file=hadoop.env
+                name: hadoop-secrets
+          env:
+            - name: CLUSTER_NAME
+              value: namenode_cluster
+          volumeMounts:
+            - name: namenode-lab6-persistent-storage
+              mountPath: /hadoop/dfs/name
+      volumes:
+        - name: namenode-lab6-persistent-storage
+          persistentVolumeClaim:
+            claimName: namenode-pv-claim-lab6

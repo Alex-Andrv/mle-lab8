@@ -1,0 +1,4 @@
+/.venv/
+/.idea/
+/spark-operator/
+uninstall_operator.sh
